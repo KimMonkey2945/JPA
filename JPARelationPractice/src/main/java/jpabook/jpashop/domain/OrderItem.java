@@ -9,12 +9,12 @@ public class OrderItem extends BaseEntity{
     private Long id;
 //    @Column(name = "OEDER_ID")
 //    private Long orderId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 //    @Column(name = "ITEM_ID")
 //    private Long itemId;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 
