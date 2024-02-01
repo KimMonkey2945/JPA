@@ -1,6 +1,7 @@
 package jpabook.jpashop.domain;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,10 +11,11 @@ public class Member extends BaseEntity{
     @Id @GeneratedValue
     @Column(name = "MEMBER_ID")
     private Long id;
+    @Column(name="username")
     private String name;
-    private String city;
-    private String street;
-    private String zipcode;
+
+    @Embedded
+    private Address homeAddress;
 
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
@@ -34,28 +36,12 @@ public class Member extends BaseEntity{
         this.name = name;
     }
 
-    public String getCity() {
-        return city;
+    public Address getHomeAddress() {
+        return homeAddress;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getZipcode() {
-        return zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
+    public void setHomeAddress(Address homeAddress) {
+        this.homeAddress = homeAddress;
     }
 
     public List<Order> getOrders() {
